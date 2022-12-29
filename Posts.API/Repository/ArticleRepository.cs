@@ -59,7 +59,7 @@ public class ArticleRepository : IArticleRepository
     public List<Article> GetBySearch(string request)
     {
         List<Article> articles;
-        string queryString = $"SELECT id AS Id, title AS Title, createdDate AS CreatedDate, articleText AS ArticleText FROM [dbo].[details] WHERE ' ' + articleText + ' ' like '%[^]' + @text + '[^]%'";
+        string queryString = "SELECT id AS Id, title AS Title, createdDate AS CreatedDate, articleText AS ArticleText FROM [dbo].[details] WHERE ' ' + articleText + ' ' like '%[^]' + @text + '[^]%'";
         using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
         {
             connection.Open();
@@ -75,10 +75,12 @@ public class ArticleRepository : IArticleRepository
     private List<Article> GetAll()
     {
         List<Article> articles;
+        string queryString =
+            "SELECT id AS Id, title AS Title, createdDate AS CreatedDate, articleText AS ArticleText FROM [dbo].[details]";
         using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
         {
             connection.Open();
-            SqlCommand sqlCmd = new SqlCommand("ArticleViewAll", connection);
+            SqlCommand sqlCmd = new SqlCommand(queryString, connection);
             SqlDataReader dataReader = sqlCmd.ExecuteReader();
             articles = GetList<Article>(dataReader);
         }
