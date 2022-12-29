@@ -2,18 +2,26 @@ version: '3.4'
 
 services:
   posts.api:
-    image: ${DOCKER_REGISTRY-}postapi
-    container_name: postapi
+    image: ${DOCKER_REGISTRY-}postsapi
+    container_name: postsapi
     build:
       context: .
       dockerfile: Posts.API/Dockerfile
     depends_on:
-      - postsdb
+      - articlesdb
     ports:
       - "7115:80"
-  postsdb:
+  parser:
+    image: ${DOCKER_REGISTRY-}parser
+    container_name: parser
+    build:
+      context: .
+      dockerfile: TengriNewsParser/Dockerfile
+    depends_on:
+      - articlesdb
+  articlesdb:
     image: totajekeshova/news_articles_db
-    container_name: postsdb
+    container_name: articlesdb
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=reallyStrongPwd123

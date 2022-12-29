@@ -3,7 +3,7 @@ WORKDIR /TengriNewsParser
 COPY ["./TengriNewsParser", "TengriNewsParser"]
 RUN dotnet restore "TengriNewsParser/TengriNewsParser.csproj" 
 COPY . .
-WORKDIR "/NewsParser/TengriNewsParser"
+WORKDIR "./TengriNewsParser"
 RUN dotnet build "TengriNewsParser.csproj" -c Release -o /app/build
 
 FROM build AS publish
