@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  posts.api:
+    image: ${DOCKER_REGISTRY-}postapi
+    container_name: postapi
+    build:
+      context: .
+      dockerfile: Posts.API/Dockerfile
+    depends_on:
+      - postsdb
+    ports:
+      - "7115:80"
+  postsdb:
+    image: totajekeshova/news_articles_db
+    container_name: postsdb
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=reallyStrongPwd123
+      - MSSQL_PID=Developer
+    restart: always
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/Users/totajekeshova/Desktop/postsdb/data
+      - sql_data:/Users/totajekeshova/Desktop/postsdb/log
+      - sql_data:/Users/totajekeshova/Desktop/postsdb/secrets
+
+volumes:
+  sql_data:
+
+  
+
+
+

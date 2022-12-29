@@ -7,7 +7,7 @@ namespace TengriNewsParser;
 public class ServerConnection
 {
     private const string ConnectionString =
-        "Server=localhost;Database=NewsArticles;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=True;MultipleActiveResultSets=true";
+        "Server=postsdb;Database=NewsArticles;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=True;MultipleActiveResultSets=true";
     public void AddArticle(Article article)
     {
         SqlConnection connection = new SqlConnection(ConnectionString);
