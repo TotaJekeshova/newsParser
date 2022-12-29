@@ -14,4 +14,4 @@ http://localhost:7115/api/search?text=президент
 ```
 
 ## Additional information:
-You can find more information [explanatory notes](explanatory_notes.md)
+You can find more information in [explanatory notes](explanatory_notes.md)
