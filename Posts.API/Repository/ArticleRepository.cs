@@ -16,7 +16,7 @@ public class ArticleRepository : IArticleRepository
     public List<Article> GetByDateTime(DateTime startDate, DateTime endDate)
     {
         List<Article> articles;
-        string queryString = "SELECT id AS Id, title AS Title, createdDate AS CreatedDate, articleText AS ArticleText FROM [dbo].[details] WHERE createdDate > @start AND createdDate < @end";
+        string queryString = "SELECT id AS Id, title AS Title, createdDate AS CreatedDate, articleText AS ArticleText FROM [dbo].[details] WHERE createdDate >= @start AND createdDate <= @end";
         using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
         {
             connection.Open();
@@ -25,6 +25,7 @@ public class ArticleRepository : IArticleRepository
             sqlCmd.Parameters.Add("@end", SqlDbType.DateTime).Value = endDate;
             SqlDataReader dataReader = sqlCmd.ExecuteReader();
             articles = GetList<Article>(dataReader);
+            connection.Close();
         }
         return articles;
     }

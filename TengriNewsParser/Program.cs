@@ -1,16 +1,12 @@
 ﻿
 using TengriNewsParser;
 
-GetPath();
+var path = "https://tengrinews.kz/kazakhstan_news/kazahstanskie-ukrainskie-kiberpolitseyskie-proveli-487341/";
+var parser = new Parser();
+var article = parser.ParseArticle(path);
 
-void GetPath()
-{
-    var path = "https://tengrinews.kz/kazakhstan_news/kazahstanskie-ukrainskie-kiberpolitseyskie-proveli-487341/";
-    var parser = new Parser();
-    var article = parser.ParseArticle(path);
+Thread.Sleep(10000);
+var serverConnection = new ServerConnection();
+serverConnection.AddArticle(article);
 
-    var serverConnection = new ServerConnection();
-    serverConnection.AddArticle(article);
-
-    GetPath();
-}
+ 
