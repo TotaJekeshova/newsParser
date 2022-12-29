@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Posts.API.Repository.Interfaces;
 
 namespace Posts.API.Controllers;
-
-[Route("api/posts")]
+[Route("api/posts")] 
 public class PostsController : Controller
 {
     private readonly IArticleRepository _articleRepository;
@@ -13,8 +12,8 @@ public class PostsController : Controller
         _articleRepository = articleRepository;
     }
     
-    [HttpGet]
-    public async Task<ActionResult> GetByDateTime([FromQuery] DateTime start, [FromQuery] DateTime end)
+    [HttpGet("getValues/{start}/{end}")]
+    public async Task<ActionResult> GetByDateTime(DateTime start, DateTime end)
     {
         if (start is DateTime && end is DateTime)
         {
@@ -29,7 +28,7 @@ public class PostsController : Controller
         
     }  
     
-    [HttpGet("/topten")]
+    [HttpGet ("/topten")]
     public async Task<ActionResult> GetTopTen()
     {
         var topWords = _articleRepository.GetTopTen();
