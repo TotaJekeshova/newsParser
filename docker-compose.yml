@@ -30,9 +30,9 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - sql_data:/Users/totajekeshova/Desktop/postsdb/data
-      - sql_data:/Users/totajekeshova/Desktop/postsdb/log
-      - sql_data:/Users/totajekeshova/Desktop/postsdb/secrets
+      - sql_data:${HOME}/Desktop/postsdb/data
+      - sql_data:${HOME}/Desktop/postsdb/log
+      - sql_data:${HOME}/Desktop/postsdb/secrets
 
 volumes:
   sql_data:
