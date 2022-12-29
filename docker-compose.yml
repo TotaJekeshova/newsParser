@@ -29,13 +29,14 @@ services:
     restart: always
     ports:
       - "1433:1433"
-    volumes:
-      - sql_data:${HOME}/Desktop/postsdb/data
-      - sql_data:${HOME}/Desktop/postsdb/log
-      - sql_data:${HOME}/Desktop/postsdb/secrets
+    # volumes:
+    #   - sql_data:${HOME}/Desktop/postsdb/data
+    #   - sql_data:${HOME}/Desktop/postsdb/log
+    #   - sql_data:${HOME}/Desktop/postsdb/secrets
+    # зависит от того на какой машине будет запущено: на unix или windows 
 
-volumes:
-  sql_data:
+# volumes:
+#   sql_data:
 
   
 
